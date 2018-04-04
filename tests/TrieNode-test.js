@@ -5,19 +5,18 @@ describe('TrieNode', () => {
   let node;
 
   beforeEach(() => {
-    node = new Node('pizza')
+    node = new Node('conga')
   })
 
   it('should be a thing', () => {
     expect(node).to.exist
   })
 
-  it('should default next to null', () => {
-    expect(node.next).to.equal(null);
-    // expect(node.prev).to.equal(null);
+  it('should default completeWord to false', () => {
+    expect(node.completeWord).to.equal(false);
   })
 
-  it('should take value and assign it to val prop', () => {
-    expect(node.val).to.equal('pizza')
+  it('should take string and assign it to val prop', () => {
+    expect(node.val).to.equal('conga')
   })
 })
