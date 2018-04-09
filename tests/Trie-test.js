@@ -16,7 +16,6 @@ describe('Trie', () => {
   describe('count', () => {
     it('should increase count when new word is added', () => {
       let trie = new Trie()
-
       trie.insert('burger')
       trie.insert('burden')
       trie.insert('burst')
@@ -28,7 +27,6 @@ describe('Trie', () => {
 
     it('should not increase count when dupe word is added', () => {
       let trie = new Trie()
-
       trie.insert('daft')
       trie.insert('daunting')
       trie.insert('daft')
