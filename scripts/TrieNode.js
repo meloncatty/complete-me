@@ -1,8 +1,7 @@
 export default class TrieNode {
-  constructor(letter = null) {
-    this.val = letter
-    this.children = {} //key-value pairs of letters
+  constructor(word = null) {
+    this.val = word
+    this.children = {}
     this.completeWord = false
-    this.next = null
   }
 }

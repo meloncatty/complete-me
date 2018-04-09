@@ -23,8 +23,4 @@ describe('TrieNode', () => {
   it('should have children property as empty object when created', () => {
     expect(node.children).to.deep.equal({})
   })
-
-  // it('should have zero prefixes when created', () => {
-  //   expect(node.prefixes).to.equal(0)
-  // })
 })
