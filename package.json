@@ -1,7 +1,7 @@
 {
-  "name": "TDD",
+  "name": "complete-me",
   "version": "1.0.0",
-  "description": "",
+  "description": "Basic autocomplete with javascript",
   "main": "index.js",
   "directories": {
     "test": "tests"
@@ -10,17 +10,27 @@
     "test": "mocha --compilers js:babel-core/register tests"
   },
   "keywords": [],
-  "author": "",
+  "author": "Krista Handel",
   "license": "ISC",
   "devDependencies": {
     "babel-cli": "^6.22.2",
     "babel-core": "^6.26.0",
     "babel-preset-env": "^1.1.8",
     "babel-preset-es2015": "^6.24.1",
-    "chai": "^3.5.0"
+    "chai": "^3.5.0",
+    "mocha": "^5.0.5"
   },
   "dependencies": {
+    "TDD": "git+https://github.com/meloncatty/complete-me.git",
     "babel": "^6.23.0",
     "babel-preset-stage-2": "^6.24.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/meloncatty/complete-me.git"
+  },
+  "bugs": {
+    "url": "https://github.com/meloncatty/complete-me/issues"
+  },
+  "homepage": "https://github.com/meloncatty/complete-me#readme"
 }

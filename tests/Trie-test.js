@@ -1,6 +1,7 @@
 import Trie from '../scripts/Trie'
 import { expect } from 'chai';
 
+
 describe('Trie', () => {
 
   describe('insert', () => {
@@ -9,13 +10,14 @@ describe('Trie', () => {
       trie.insert('car');
       trie.insert('candy');
 
-      expect(trie.root.children.C.val).to.equal('C');
-    });
+      // expect(trie.root.children.[0].val).to.equal()
+    })
   })
 
   describe('count', () => {
     it('should increase count when new word is added', () => {
       let trie = new Trie()
+
       trie.insert('burger')
       trie.insert('burden')
       trie.insert('burst')
@@ -27,6 +29,7 @@ describe('Trie', () => {
 
     it('should not increase count when dupe word is added', () => {
       let trie = new Trie()
+
       trie.insert('daft')
       trie.insert('daunting')
       trie.insert('daft')
@@ -35,14 +38,14 @@ describe('Trie', () => {
     })
   })
 
-  describe('find', () => {
+  describe('findWord', () => {
     it('should find a word', () => {
       let trie = new Trie()
 
       trie.insert('buckaroo')
       trie.insert('bonzai')
 
-      expect(trie.find('buckaroo')).to.equal(true)
+      expect(trie.findWord('buckaroo')).to.equal(true)
     })
   })
 
@@ -54,9 +57,24 @@ describe('Trie', () => {
       trie.insert('bath')
       trie.insert('bathmat')
       trie.insert('bathing')
-      trie.suggest('ba')
-      console.log(JSON.stringify(trie, null, 4))
-      expect(trie.suggest('ba')).to.deep.equal(['bat', 'bath', 'bathmat', 'bathing'])
+
+      expect(trie.suggest('BA')).to.deep.equal(['BAT', 'BATH', 'BATHMAT', 'BATHING'])
+    })
+  })
+
+  describe('createDictionary', () => {
+    it('should be able to count large data', () => {
+      let trie = new Trie()
+      trie.createDictionary()
+
+      expect(trie.wordCount).to.equal(234372)
+    })
+
+    it('should suggest words correctly with large data', ()=> {
+      let trie = new Trie()
+      trie.createDictionary()
+
+      expect(trie.suggest('ZEST')).to.deep.equal([ 'ZEST', 'ZESTFUL', 'ZESTFULLY', 'ZESTFULNESS', 'ZESTY' ])
     })
   })
 });
