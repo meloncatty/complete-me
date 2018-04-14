@@ -1,6 +1,7 @@
 import TrieNode from './TrieNode'
+import fs from 'fs'
 
-export default class Trie {
+class Trie {
   constructor() {
     this.root = new TrieNode()
     this.wordCount = 0
@@ -8,34 +9,35 @@ export default class Trie {
 
   insert(word) {
      let currNode = this.root
-     const upperLetter = word.toUpperCase()
-     for(let letter of upperLetter) {
-       if(!currNode.children[letter]) {
-         currNode.children[letter] = new TrieNode(upperLetter[letter])
+     const upperCase = [...word.toUpperCase()]
+     for(let letter of upperCase) {
+       if (!currNode.children[letter]) {
+         currNode.children[letter] = new TrieNode(upperCase[letter])
        }
        currNode = currNode.children[letter]
      }
-     if(!currNode.completeWord) {
+     if (!currNode.completeWord) {
        currNode.completeWord = true;
        this.count()
      }
   }
 
-  find(word) {
+  count() {
+    this.wordCount++
+    return this.wordCount
+  }
+
+  findWord(word) {
     let currNode = this.root
-    const upperLetter = word.toUpperCase()
-    for(let letter of upperLetter) {
-      if(currNode.children[letter]) {
-        currNode = currNode.children[letter]
+    const upperCase = word.toUpperCase()
+    for (let i = 0; i < upperCase.length; i++) {
+      if (currNode.children[upperCase[i]]) {
+        currNode = currNode.children[upperCase[i]]
       } else {
         return false
       }
     }
     return true
-  }
-
-  deleteWord(word) {
-
   }
 
   suggest(word) {
@@ -45,22 +47,22 @@ export default class Trie {
     currNode = this.mapWord(word)
 
     const findSuggestion = (searchWord, currNode) => {
-      if(currNode.completeWord) {
+      if (currNode.completeWord) {
         suggestArray.push(searchWord)
       }
 
-      if(currNode.children) {
+      if (currNode.children) {
         const childrenKeys = Object.keys(currNode.children)
         childrenKeys.forEach(key => {
           let nextNode = currNode.children[key]
           let prefix = searchWord + key
-          console.log(prefix)
+          // console.log(searchWord)
           findSuggestion(prefix, nextNode)
         })
       }
     }
 
-    findSuggestion('', currNode)
+    findSuggestion(word, currNode)
     return suggestArray
   }
 
@@ -74,8 +76,14 @@ export default class Trie {
     return currNode
   }
 
-  count() {
-    this.wordCount++
-    return this.wordCount
+  createDictionary(...array) {
+    const text = "/usr/share/dict/words"
+    const dictionary = fs.readFileSync(text).toString().trim().split('\n')
+
+    for (let word of dictionary)
+      this.insert(word)
+    this.count()
   }
 }
+
+module.exports = Trie
