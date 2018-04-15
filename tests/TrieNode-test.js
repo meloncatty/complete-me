@@ -4,12 +4,23 @@ import Node from '../scripts/TrieNode'
 describe('TrieNode', () => {
   let node;
 
-  beforeEach(() => {
-    node = new Node('conga')
+  it('should have prop val that defaults to null', () => {
+    let current = new Node()
+    expect(current.val).to.equal(null)
   })
 
-  it('should exist', () => {
-    expect(node).to.exist
+  it('should have prop children that defaults to empty object', () => {
+    let current = new Node()
+    expect(current.children).to.deep.equal({})
+  })
+
+  it('should have prop completeWord that defaults to false', () => {
+    let current = new Node()
+    expect(current.completeWord).to.be.false
+  })
+
+  beforeEach(() => {
+    node = new Node('conga')
   })
 
   it('should default completeWord to false', () => {

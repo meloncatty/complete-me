@@ -1,16 +1,49 @@
 import Trie from '../scripts/Trie'
+import TrieNode from '../scripts/TrieNode'
 import { expect } from 'chai';
 
 
 describe('Trie', () => {
+  it('should instantiate a new trie', () => {
+    let trie = new Trie()
+
+    expect(trie).to.be.an.instanceof(Trie)
+  })
+
+  it('should have root property default to new TrieNode', () => {
+    let trie = new Trie()
+
+    expect(trie.root).to.be.an.instanceof(TrieNode)
+  })
+
+  it('should have wordCount property default to 0', () => {
+    let trie = new Trie()
+
+    expect(trie.wordCount).to.equal(0)
+  })
 
   describe('insert', () => {
-    let trie = new Trie()
-    it('should be able to add a node to the Trie', () => {
-      trie.insert('car');
-      trie.insert('candy');
+    it('should insert a new word', ()=> {
+      let trie = new Trie()
+      trie.insert('pals')
 
-      // expect(trie.root.children.[0].val).to.equal()
+      expect(trie.findWord('pals')).to.equal(true)
+    })
+  })
+
+  describe('findWord', () => {
+    it('should return true if word is found', () => {
+      let trie = new Trie()
+      trie.insert('shells')
+
+      expect(trie.findWord('shells')).to.equal(true)
+    })
+
+    it('should retrun false if word does not exist', () =>{
+      let trie = new Trie()
+      trie.insert('ghost')
+
+      expect(trie.findWord('just')).to.equal(false)
     })
   })
 
@@ -38,17 +71,6 @@ describe('Trie', () => {
     })
   })
 
-  describe('findWord', () => {
-    it('should find a word', () => {
-      let trie = new Trie()
-
-      trie.insert('buckaroo')
-      trie.insert('bonzai')
-
-      expect(trie.findWord('buckaroo')).to.equal(true)
-    })
-  })
-
   describe('suggest', () => {
     it('should suggest a word based on a prefix', () => {
       let trie = new Trie()
@@ -62,19 +84,39 @@ describe('Trie', () => {
     })
   })
 
-  describe('createDictionary', () => {
-    it('should be able to count large data', () => {
+  describe('populate', () => {
+    it('should populate trie and be able to count large data', () => {
       let trie = new Trie()
-      trie.createDictionary()
+      trie.populate()
 
       expect(trie.wordCount).to.equal(234372)
     })
 
     it('should suggest words correctly with large data', ()=> {
       let trie = new Trie()
-      trie.createDictionary()
+      trie.populate()
 
       expect(trie.suggest('ZEST')).to.deep.equal([ 'ZEST', 'ZESTFUL', 'ZESTFULLY', 'ZESTFULNESS', 'ZESTY' ])
+    })
+
+    it('should not insert word if it already exists', ()=> {
+      let trie = new Trie()
+      trie.populate()
+      trie.insert('ZEST')
+
+      expect(trie.wordCount).to.equal(234372)
+    })
+  })
+
+  describe('select', () => {
+
+    it('should increase word rating when selected', ()=> {
+      let trie = new Trie()
+
+      trie.insert('less')
+      trie.select('less')
+
+      expect(trie.root.children.L.children.E.children.S.children.S.rating).to.equal(1)
     })
   })
 });
