@@ -3,6 +3,7 @@ class TrieNode {
     this.val = word
     this.children = {}
     this.completeWord = false
+    this.rating = 0
   }
 }
 
