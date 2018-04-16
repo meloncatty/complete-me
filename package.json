@@ -1,6 +1,6 @@
 {
   "name": "@neko3/complete-me",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Basic autocomplete with javascript",
   "main": "index.js",
   "directories": {
