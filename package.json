@@ -1,8 +1,8 @@
 {
-  "name": "complete-me",
+  "name": "@neko3/complete-me",
   "version": "1.0.0",
   "description": "Basic autocomplete with javascript",
-  "main": "index.js",
+  "main": "./scripts",
   "directories": {
     "test": "tests"
   },
