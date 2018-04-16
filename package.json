@@ -1,6 +1,6 @@
 {
-  "name": "@neko3/complete-me",
-  "version": "1.0.8",
+  "name": "@neko3/complete-me-last",
+  "version": "1.0.0",
   "description": "Basic autocomplete with javascript",
   "main": "scripts/Trie.js",
   "directories": {
@@ -22,8 +22,7 @@
   },
   "dependencies": {
     "TDD": "git+https://github.com/meloncatty/complete-me.git",
-    "babel": "^6.23.0",
-    "babel-preset-stage-2": "^6.24.1"
+    "babel": "^6.23.0"
   },
   "repository": {
     "type": "git",
